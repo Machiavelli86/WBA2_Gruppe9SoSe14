@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Planeten</title>
+		<!--Jquery laden-->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<!--Faye laden-->
+		<script type='text/javascript' src='/faye/client.js'></script>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+        //PubSub Client erstellen
+        var client = new Faye.Client('/faye');
+
+        var subscription = client.subscribe('/planeten', function(message) {
+          addTableRow(message);
+        });
+
+        //Definiert, was nach dem Absenden des Formulars passiert
+        $('#planeten').submit(function(event) {
+          var formURL = $(this).attr('action');
+          // content wird in data als JSON gespeichert
+          var data = {
+            Name: $('#name').val(),
+            Abstand: $('#abstand').val(),
+            Durchmesser: $('#durchmesser').val()
+          };
+
+          //Spezifiziert das Verhalten bei "post" auf /planeten
+          var ajaxPost = $.ajax({
+            url: formURL,
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json'
+          });
+          // Pop-up und Formular leeren
+          ajaxPost.done(function() {
+            alert(data.Name + ' hinzugefügt');
+            $('#planeten')[0].reset();
+          });
+          // Popup mit Error
+          ajaxPost.fail(function(e) {
+            alert(data.Name + ' nicht hinzugefügt (' + JSON.stringify(e) + ')');
+          });
+          // Prevent Default des Formulars
+          event.preventDefault();
+        });
+
+        //Spezifiziert das Verhalten bei "get" auf /planeten
+        var request = $.ajax({
+          url: '/planeten',
+          type: 'GET',
+          contentType: 'application/json'
+        });
+        //Erweitert die Tabelle
+        request.done(function(data) {
+          data.forEach(function(planeten) {
+            addTableRow(planeten);
+          });
+        });
+        //Popup mit Error
+        request.fail(function(e) {
+          alert('Da lief etwas schief!(Error: ' + JSON.stringify(e) + ')');
+        });
+        //Funktion Tabelle erweitern
+        var addTableRow = function(planet) {
+          $('#table').append('<tr><td>' + planet.Name + '</td><td>' + planet.Abstand + '</td><td>' + planet.Durchmesser + '</td></tr>');
+        };
+        });
+      </script>
+	</head>
+
+	<body>
+		<table id='table'>
+	     	<tr>
+         		<th>Name</th>
+         		<th>Abstand zur Sonne</th>
+         		<th>Durchmesser</th>
+       		</tr>
+    	</table>
+		<!--Formular-->
+		<form id= "planeten" name= "planeten" action='/planeten' method='POST' />
+			Name: <input name='name' id='name' type='text'/><br>
+			Abstand zur Sonne: <input name='abstand' id='abstand' type='text' /><br>
+			Durchmesser: <input name='durchmesser' id='durchmesser' type='text'/><br> 
+			<input type='submit' name='submit' value='Absenden' />
+		</form>
+	</body>
+</html>

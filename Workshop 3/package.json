@@ -1,0 +1,11 @@
+{
+  "name": "App",
+  "description": "Aufgabe 3",
+  "main": "app.js",
+  "author": "team9",
+  "dependencies": {
+    "express": "*",
+    "mongoskin": "*",
+    "faye": "*"
+  }
+}
