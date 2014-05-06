@@ -1,0 +1,11 @@
+{
+  "name": "App",
+  "description": "Projekt Lerngruppen",
+  "main": "app.js",
+  "author": "team27",
+  "dependencies": {
+    "express": "3",
+    "mongoskin": "*",
+    "faye": "*"
+  }
+}

@@ -1,0 +1,22 @@
+/* CSS Document */
+body { background-color:#39F; font-size:18px;}
+
+#body1 { background-color:#FFF; margin:5% 10% 5% 10%; text-align:center; padding:20px;}
+
+#h1_bike{ color:#39F;}
+
+#body1 h3{ font-size:28px; color:#0f03ff;}
+.pflichtfelder{ color:#F00;}
+
+#table_preise{ text-align:center; margin-bottom:30px;}
+#table_preise td{ padding:5px;}
+
+
+#table{ text-align:center; margin-bottom:30px;}
+#table td{ padding:5px;}
+
+#table_bestellungen { float:left; margin-bottom:20px; width:750px;}
+
+#user_res{ width:200px; text-align:center;}
+
+.fahrradreservierung{ margin: 0% 10% 20px 10%}

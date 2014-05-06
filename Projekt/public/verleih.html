@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="css.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<!--Faye laden-->
+<script type='text/javascript' src='/faye/client.js'></script>
+<script type='text/javascript' >
+function reservieren(){
+                if  (document.getElementById("mietbegin_datum").value && document.getElementById("mietbegin_zeit").value && document.getElementById("rueckgabe_datum").value && document.getElementById("rueckgabe_zeit").value) {
+                    
+                   
+
+                        document.getElementById("bestellung").submit();
+                }
+                
+                
+                else { 
+                    document.getElementById("fehler").innerHTML="Bitte alle Felder ausfühlen";
+                }
+            }
+</script>
+<script type='text/javascript' src='/jscode.js'></script>
+<script type='text/javascript' src='/jscode_bestellung.js'></script>
+<title>Rent @ Bike - Reservierung</title>
+</head>
+
+<body>
+<div id="body1">
+	<a href='anmeldung.html' style='color:#0000FF;'>Neu anmelden</a><br /><br />
+
+	<h1 id="h1_bike">Fahrradreservierung</h1>
+
+	<p>Sie benötigen ein Fahrrad oder ein anderes Fahrzeug?<br />
+Gerne nehmen wir Ihre Reservierung entgegen. Bitte füllen Sie hierzu das unten stehende Formular aus.</p>
+    
+<form action='/bestellung' method='POST' id="bestellung" name="bestellung"/>
+
+    <h4>Willkommen Frau/Herr <b id="user_id"></b></h4>
+    
+    <fieldset class="fahrradreservierung">
+		<legend><b>Preise:</b></legend>
+        <label>
+    <table align="center" id="table_preise" border="1">
+        <tr style=" font-weight:bold;"><td>Zeit</td><td>City-Rad</td><td>Mountainbike</td><td>Trekkingbike</td></tr>
+        <tr><td>1 Tag</td><td>8,00 EUR</td><td>12,00 EUR</td><td>11,00 EUR</td></tr>
+        <tr><td>2-4 Tage</td><td>je Tag 6,00 EUR</td><td>10,00 EUR</td><td>9,00 EUR</td></tr>
+        <tr><td>5-14 Tage</td><td>je Tag 5,00 EUR</td><td>9,00 EUR</td><td>8,00 EUR</td></tr>
+    </table>
+    <h4>Kaution: 50,00 €</h4>
+    
+    </label>
+            </fieldset>
+            
+    	<div id="fehler" style="color:#ff0000; margin-bottom:20px; font-size:26px;"></div>
+        
+        <fieldset class="fahrradreservierung">
+		<legend><b>Fahrradtypen wählen</b></legend>
+            <label>
+            	<table align="center" id="table_preise">
+    				<tr><td>Cityrad(-räder)</td>
+                        <td>
+                            <select name="carlist" id="cityrad" form="carform">
+                            	<option value="0">0</option>
+                                <option value="1">1</option>
+  								<option value="2">2</option>
+  								<option value="3">3</option>
+                                <option value="4">4</option>
+  								<option value="5">5</option>
+                                <option value="6">6</option>
+  								<option value="7">7</option>
+                            	<option value="8">8</option>
+                            	<option value="9">9</option>
+                            	<option value="10">10</option>
+							</select>
+                        </td>
+                    <td>
+                    Farbe:  <select name="carlist" id="cityrad_farbe" form="carform">
+                            	<option value="egal">egal</option>
+  								<option value="blau">Blau</option>
+  								<option value="gelb">Gelb</option>
+                                <option value="gruen">Grün</option>
+  								<option value="rot">Rot</option>
+                                <option value="schwarz">Schwarz</option>
+  								<option value="weiss">Weiss</option>
+							</select> 
+                    </td>
+                    </tr>
+    				<tr><td>Mountainbike(s)</td>
+                        <td>
+                        <select name="carlist" id="mountainbike" form="carform">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                        </td>
+                    <td>
+                    Farbe:  <select name="carlist" id="mountainbike_farbe" form="carform">
+                            	<option value="egal">egal</option>
+  								<option value="blau">Blau</option>
+  								<option value="gelb">Gelb</option>
+                                <option value="gruen">Grün</option>
+  								<option value="rot">Rot</option>
+                                <option value="schwarz">Schwarz</option>
+  								<option value="weiss">Weiss</option>
+							</select> 
+                    </td></tr>
+					<tr><td>Trekkingrad(-räder)</td>
+                        <td>
+                        <select name="carlist" id="trekkingrad" form="carform">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                        </td>
+                    <td>
+                    Farbe:  <select name="carlist" id="trekkingrad_farbe" form="carform">
+                            	<option value="egal">egal</option>
+  								<option value="blau">Blau</option>
+  								<option value="gelb">Gelb</option>
+                                <option value="gruen">Grün</option>
+  								<option value="rot">Rot</option>
+                                <option value="schwarz">Schwarz</option>
+  								<option value="weiss">Weiss</option>
+							</select> 
+                    </td></tr>
+    			</table>
+        	</label>
+		</fieldset>
+        
+        <fieldset class="fahrradreservierung">
+		<legend><b>Datum</b></legend>
+            <label>
+            	<table align="center" id="table_preise">
+    				<tr><td><b>Mietbegin</b></td><td>Datum: </td>
+                        <td><input type="text" size="20" id="mietbegin_datum" name="mietbegin_datum" value="z.B. 07.05.2014"/></td>
+                        <td>Zeit: <input type="text" size="10" id="mietbegin_zeit" name="mietbegin_zeit" value="z.B. 13:00"/> Uhr</td>
+            
+                        </tr>
+    				<tr>
+                    <td><b>Rückgabe</b></td><td>Datum: </td>
+                    <td><input type="text" size="20" id="rueckgabe_datum" name="rueckgabe_datum" /></td>
+                        <td>Zeit: <input type="text" size="10" id="rueckgabe_zeit" name="rueckgabe_zeit"/> Uhr</td>
+                    </tr>
+    			</table>
+              </label>
+		</fieldset>
+        
+        <fieldset class="fahrradreservierung">
+		<legend><b>Ort</b></legend>
+            <label>
+            	<table align="center" id="table_preise">
+    				<tr><td>Abholort:</td><td>Köln Hbf</td></tr>
+    				<tr><td>Rückgabeort:</td><td>Köln Hbf</td></tr>
+    			</table>
+		</fieldset>
+        <input type='submit' name='submit' value="reservieren" OnClick="reservieren();"/>
+</form>
+
+
+<div style="margin-top:50px; clear:both;"><a href="/index.html">Startseite</a> || <a href="/anmeldung.html">Anmeldung</a> || <a href="/verleih.html">Bestellung</a> || <a href="/benutzer_liste.html">Benutzerliste</a> || <a href="/bestellungen.html">Reservierungen</a></div>
+</div>        
+
+</body>
+</html>

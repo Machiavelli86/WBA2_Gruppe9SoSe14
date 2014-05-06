@@ -1,0 +1,46 @@
+<html>
+	<head>
+        <link type="text/css" rel="stylesheet" href="css.css" />
+		<title>Anmeldung</title>
+		<!--Jquery laden-->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<!--Faye laden-->
+		<script type='text/javascript' src='/faye/client.js'></script>
+        <script type='text/javascript' src='jscode.js'></script>
+        <script type="text/javascript">
+            function send_form(){
+                if  (document.getElementById("user").value && document.getElementById("email").value && document.getElementById("password").value) {
+                    
+                   
+
+                        document.getElementById("anmeldung").submit();
+                }
+                
+                
+                else { 
+                    document.getElementById("fehler").innerHTML="Bitte alle Felder ausfühlen";
+                }
+            }
+        </script>
+
+
+	</head>
+	<body>
+        <div id="body1">
+            <h1 id="h1_bike">Rent @ Bike</h1>
+            <h3>Anmeldung:</h3>
+		<!--Formular-->
+		<form id="anmeldung" name="anmeldung" action='/anmeldung' method='POST' />
+        <div id="fehler" style="color:#ff0000; margin-bottom:20px;"></div>
+			User: <input name='user' id='user' type='text'/><br/><br/>
+			Email: <input name='email' id='email' type='text' /><br/><br/>
+			Password: <input name='password' id='password' type='text'/><br/><br/>
+			<input type='submit' name='submit' value='Absenden' onClick="send_form()" />
+            <div style="margin-top:50px;">
+                <br /><a href="/verleih.html">Fahrrad ausleihen</a></div>
+            <div style="margin-top:50px;"><a href="/benutzer_liste.html">Benutzerliste</a></div>
+            <div style="margin-top:50px;"><a href="/bestellungen.html">Reservierungen</a></div>
+		</form>
+        </div>
+	</body>
+</html>
