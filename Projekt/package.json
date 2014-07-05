@@ -1,10 +1,10 @@
 {
   "name": "App",
-  "description": "Projekt Lerngruppen",
+  "description": "Rent@Bike",
   "main": "app.js",
-  "author": "team27",
+  "author": "team9",
   "dependencies": {
-    "express": "3",
+    "express": "*",
     "mongoskin": "*",
     "faye": "*"
   }
