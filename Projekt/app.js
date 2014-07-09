@@ -74,7 +74,7 @@ app.post('/anmeldung', function(req, res, next){
 		}
 		//Ausgabe
 		else{
-			console.log(req.body.modul + ' wurde gespeichert!');
+			console.log('User wurde gespeichert!');
 		};
                      
 	});
@@ -83,7 +83,7 @@ app.post('/anmeldung', function(req, res, next){
 	publication.then(function() {
 		res.writeHead(200, 'OK');
 		//Ausgabe
-		console.log(req.body.modul + ' veröffentlicht unter "/anmeldung"!');
+		console.log('User wurde veröffentlicht unter "/anmeldung"!');
 		res.end();
 	//Errorbehandlung
 	}, function(error) {
@@ -126,7 +126,7 @@ app.post('/bestellung', function(req, res, next){
                           }
                           //Ausgabe
                           else{
-                          console.log(req.body.modul + ' wurde gespeichert!');
+                          console.log('Bestellung wurde gespeichert!');
                           };
                           
                           });
@@ -135,7 +135,7 @@ app.post('/bestellung', function(req, res, next){
          publication.then(function() {
                           res.writeHead(200, 'OK');
                           //Ausgabe
-                          console.log(req.body.modul + ' veröffentlicht unter "/bestellung"!');
+                          console.log('Bestellung wurde veröffentlicht unter "/bestellung"!');
                           res.end();
                           //Errorbehandlung
                           }, function(error) {
